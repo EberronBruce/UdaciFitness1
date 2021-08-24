@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "UdaciFitness1",
+    "slug": "UdaciFitness1",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "UdaciFitness1"
+}
