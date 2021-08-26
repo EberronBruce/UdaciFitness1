@@ -8,8 +8,12 @@ import UdaciFitnessCalendar from 'udacifitness-calendar-fix';
 import { white } from '../utils/colors';
 import DateHeader from './DateHeader';
 import MetricCard from './MetricCard';
+import AppLoading from 'expo-app-loading';
 
 class History extends Component {
+  state = {
+    ready: false,
+  }
   componentDidMount(){
     const { dispatch } = this.props
 
@@ -22,6 +26,9 @@ class History extends Component {
         }))
       }
     })
+    .then(() => this.setState(() =>({
+      ready: true,
+    })))
   }
   renderItem = ({ today, ...metrics }, formattedDate, key) => (
     <View style={styles.item}>
@@ -51,6 +58,15 @@ class History extends Component {
 
   render() {
     const { entries } = this.props
+    const { ready } = this.state
+
+    if (ready === false) {
+      return <AppLoading
+        startAsync={this._cacheResourcesAsync}
+        onFinish={() => this.setState({ ready: true })}
+          onError={console.warn}
+          />
+    }
 
     return (
         <UdaciFitnessCalendar
