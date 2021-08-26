@@ -8,7 +8,6 @@ import UdaciFitnessCalendar from 'udacifitness-calendar-fix';
 import { white } from '../utils/colors';
 import DateHeader from './DateHeader';
 import MetricCard from './MetricCard';
-import AppLoading from 'expo-app-loading';
 
 class History extends Component {
   state = {
@@ -61,11 +60,7 @@ class History extends Component {
     const { ready } = this.state
 
     if (ready === false) {
-      return <AppLoading
-        startAsync={this._cacheResourcesAsync}
-        onFinish={() => this.setState({ ready: true })}
-          onError={console.warn}
-          />
+      return <Text style={{fontSize: 50}}>Loading...</Text>
     }
 
     return (
